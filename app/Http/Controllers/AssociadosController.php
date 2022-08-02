@@ -10,7 +10,7 @@ use App\Models\Associados;
 
 
 
-class UserTenantController extends Controller
+class AssociadosController extends Controller
 {
     public function __construct(private Associados $associados ){
 
@@ -32,22 +32,26 @@ class UserTenantController extends Controller
         try{
             // Step 1 : Create User
             $associados = new Associados();
-            $associados->name = $request->name;
+            $associados->nome = $request->nome;
+            $associados->nome_artistico = $request->nome_artistico;
             $associados->cnpf_cnpj = $request->cnpf_cnpj;
+            $associados->email = $request->email;
+            $associados->email2 = $request->email2;
+            $associados->data_nascimento = $request->data_nascimento;
+        
             $associados->rua = $request->rua;
             $associados->numero = $request->numero;
             $associados->cep = $request->cep;
-            $associados->bairro = $request->email;
             $associados->cidade = $request->cidade;
             $associados->uf = $request->uf;
             $associados->pais = $request->pais;
+
             $associados->telefone1 = $request->telefone1;
             $associados->telefone2 = $request->telefone2;
-            $associados->telefone3 = $request->telefone3;
 
+            $associados->data_cobranca = $request->data_cobranca;
 
-
-
+            $associados->tenant_id = $request->tenant_id;
 
             $associados->save();
 
@@ -77,18 +81,26 @@ class UserTenantController extends Controller
         try{
 
             $associados = Associados::find($id);
-            $associados->name = $request->name;
+            $associados->nome = $request->nome;
+            $associados->nome_artistico = $request->nome_artistico;
             $associados->cnpf_cnpj = $request->cnpf_cnpj;
+            $associados->email = $request->email;
+            $associados->email2 = $request->email2;
+            $associados->data_nascimento = $request->data_nascimento;
+        
             $associados->rua = $request->rua;
             $associados->numero = $request->numero;
             $associados->cep = $request->cep;
-            $associados->bairro = $request->email;
             $associados->cidade = $request->cidade;
             $associados->uf = $request->uf;
             $associados->pais = $request->pais;
+
             $associados->telefone1 = $request->telefone1;
             $associados->telefone2 = $request->telefone2;
-            $associados->telefone3 = $request->telefone3;
+
+            $associados->data_cobranca = $request->data_cobranca;
+
+            $associados->tenant_id = $request->tenant_id;
 
             $associados->update();
 

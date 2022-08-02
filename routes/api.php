@@ -56,7 +56,9 @@ Route::group([
          * Usuários
          */
         Route::prefix('/associados')->group(function () {
-            Route::get('/', [UserTenantController::class, 'index']);
+            Route::get('/', [AssociadosController::class, 'index']);
+            Route::post('/add', [AssociadosController::class, 'store']);
+
         });
     });
 });
