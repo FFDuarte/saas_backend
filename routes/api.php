@@ -49,15 +49,21 @@ Route::group([
     'prefix' => '/dashboard/{tenant}',
     'middleware' => [InitializeTenancyByPath::class],
 ], function () {
-
+    Route::prefix('/usuarios')->group(function () {
+        Route::post('/atualizar/{id}', [TenantController::class, 'update']);   
+        Route::get('/pesquisar/{id}', [TenantController::class, 'show']);
+    });
     Route::group(['middleware' => ['assign.guard:tenant', 'jwt.protected:tenant']], function () {
-
+      
         /**
-         * Usuários
+         * associados
          */
         Route::prefix('/associados')->group(function () {
             Route::get('/', [AssociadosController::class, 'index']);
             Route::post('/add', [AssociadosController::class, 'store']);
+            Route::post('/atualizar/{id}', [AssociadosController::class, 'update']);
+            Route::post('/deletar/{id}', [AssociadosController::class, 'destroy']);
+
 
         });
     });

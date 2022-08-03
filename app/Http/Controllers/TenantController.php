@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\UserTenant;
 
 
 
-class UserTenantController extends Controller
+class TenantController extends Controller
 {
-    public function __construct(private UserTenant $user){
+    public function __construct(private Tenant $tenant){
 
     }
     /**
@@ -23,29 +23,10 @@ class UserTenantController extends Controller
     public function index()
     {
 
-        return UserTenant::all();
+        return Tenant::all();
     }
 
-    public function store(Request $request)
-    {
-
-        try{
-            // Step 1 : Create User
-            $user = new UserTenant();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->save();
-
-            DB::commit();
-
-            return $user;
-        }catch(Exception $e){
-            DB::rollback();
-            return $e;
-        }
-    }
-
+   
     /**
      * Display the specified resource.
      *
@@ -54,7 +35,7 @@ class UserTenantController extends Controller
      */
     public function show($id)
     {
-        return UserTenant::find($id);
+        return Tenant::find($id);
     }
 
 
@@ -63,10 +44,18 @@ class UserTenantController extends Controller
         try{
 
             $user = $this->user->findOrFail($id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->tipo = $request->tipo;
+            $user->id         = $request->tenant_id;
+            $user->empresa    = $request->empresa;
+            $user->cnpf_cnpj  = $request->cnpf_cnpj;
+            $user->fantasia   = $request->fantasia;
+            $user->logradouro = $request->logradouro;
+            $user->numero     = $request->numero;
+            $user->bairro     = $request->bairro;
+            $user->cidade     = $request->cidade;
+            $user->uf         = $request->uf;
+            $user->cep        = $request->cep;
+            $user->telefone1  = $request->telefone1;
+            $user->telefone2  = $request->telefone2;
             $user->update();
 
 
@@ -78,6 +67,7 @@ class UserTenantController extends Controller
             return $e;
         }
     }
+   
 
     /**
      * Remove the specified resource from storage.
@@ -90,7 +80,7 @@ class UserTenantController extends Controller
 
         try{
 
-            $user = UserTenant::find($id);
+            $user = Tenant::find($id);
            if($user){
             $user->delete();
            }

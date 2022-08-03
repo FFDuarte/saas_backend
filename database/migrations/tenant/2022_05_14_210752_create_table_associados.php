@@ -23,13 +23,14 @@ return new class extends Migration
             $table->string('numero')->nullable();
             $table->string('cep')->nullable();
             $table->string('cidade')->nullable();
+            
             $table->string('uf')->nullable();
             $table->string('pais')->nullable();
             $table->string('email')->nullable();
             $table->string('email2')->nullable();
             $table->string('telefone1');
             $table->string('telefone2')->nullable();
-            $table->date('data_cobranca');
+            $table->string('data_cobranca');
             $table->string('tenant_id');
             $table->timestamps();
             $table->softDeletes();
