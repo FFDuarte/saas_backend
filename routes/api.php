@@ -61,6 +61,7 @@ Route::group([
         Route::prefix('/associados')->group(function () {
             Route::get('/', [AssociadosController::class, 'index']);
             Route::post('/add', [AssociadosController::class, 'store']);
+            Route::get('/buscar/{id}', [AssociadosController::class, 'show']);
             Route::post('/atualizar/{id}', [AssociadosController::class, 'update']);
             Route::post('/deletar/{id}', [AssociadosController::class, 'destroy']);
 
