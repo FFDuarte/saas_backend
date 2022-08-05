@@ -66,7 +66,7 @@ class UserTenantController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->tipo = $request->tipo;
+           
             $user->update();
 
 
