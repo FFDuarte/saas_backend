@@ -50,8 +50,10 @@ Route::group([
     'middleware' => [InitializeTenancyByPath::class],
 ], function () {
     Route::prefix('/usuarios')->group(function () {
-        Route::post('/atualizar/{id}', [TenantController::class, 'update']);   
+        Route::post('/atualizar/tenant/{id}', [TenantController::class, 'update']);   
         Route::get('/pesquisar/{id}', [TenantController::class, 'show']);
+        Route::get('/atualiza/usertenant/{id}', [UserTenantController::class, 'update']);
+
     });
     Route::group(['middleware' => ['assign.guard:tenant', 'jwt.protected:tenant']], function () {
       
