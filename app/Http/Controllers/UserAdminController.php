@@ -12,7 +12,7 @@ use App\Models\UserAdmin;
 
 class UserAdminController extends Controller
 {
-    public function __construct(private UserAdmin $user){
+    public function __construct( UserAdmin $user){
 
     }
     /**

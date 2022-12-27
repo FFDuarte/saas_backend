@@ -12,7 +12,7 @@ use App\Models\UserTenant;
 
 class UserTenantController extends Controller
 {
-    public function __construct(private UserTenant $user){
+    public function __construct( UserTenant $user){
 
     }
     /**
@@ -55,6 +55,7 @@ class UserTenantController extends Controller
     public function show($id)
     {
         return UserTenant::find($id);
+        
     }
 
 
@@ -63,7 +64,7 @@ class UserTenantController extends Controller
         try{
 
             $user = $this->user->findOrFail($id);
-            $user->name = $request->name;
+            $user->nome = $request->nome;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
            

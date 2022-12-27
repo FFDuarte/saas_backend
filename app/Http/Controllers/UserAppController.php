@@ -12,7 +12,7 @@ use App\Models\UserApp;
 
 class UserAppController extends Controller
 {
-    public function __construct(private UserApp $user){
+    public function __construct( UserApp $user){
 
     }
     /**

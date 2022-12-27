@@ -70,10 +70,20 @@ class AuthAdminController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('admin')->factory()->getTTL() * 60 ,
+            'expires_in' => auth('admin')->factory()->getTTL() * 1500,
         ]);
     }
 
+    
+    public function refresh(){
+        $newToken =  auth('admin')->refresh();
+
+        return response()->json([
+            'access_token' => $newToken,
+            'token_type' => 'bearer',
+            'expires_in' =>  auth('admin')->factory()->getTTL() * 60
+        ]);
+    }
 
 
 

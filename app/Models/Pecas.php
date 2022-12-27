@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\Model;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 
-class Produtos extends Model
+class Pecas extends Model
 {
 
     use SoftDeletes;
@@ -16,24 +16,23 @@ class Produtos extends Model
     /**
      * Database table
      */
-    protected $table = 'produtos';
+    protected $table = 'pecas';
 
 
     protected $fillable = [
         'id',
-        'codigo',
-        'descricao',
-        'und_saida',
-        'qtd',
-        'preco_custo',
-        'preco_venda',
+        'nome',
+        'marca',
+        'aplicacao',
         'categoria',
+        'preco',
+        'material',
+        'descricao',
         'tenant_id',
     ];
 
     protected $casts = [
-        'preco_custo' => 'float',
-        'preco_venda' => 'float',
+        'preco' => 'float'
     ];
 
     protected $dates = [];

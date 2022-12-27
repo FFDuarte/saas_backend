@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class TenantController extends Controller
 {
-    public function __construct(private Tenant $tenant){
+    public function __construct( Tenant $tenant){
 
     }
     /**
@@ -43,8 +43,8 @@ class TenantController extends Controller
     {
         try{
 
-            $user = $this->user->findOrFail($id);
-            $user->id         = $request->tenant_id;
+            $user = Tenant::findOrFail($id);
+            $user->id         = $request->id;
             $user->empresa    = $request->empresa;
             $user->cnpf_cnpj  = $request->cnpf_cnpj;
             $user->fantasia   = $request->fantasia;

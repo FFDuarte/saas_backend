@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(60)->by($request->user()->id ?: $request->ip());
         });
     }
 
@@ -65,7 +65,7 @@ class RouteServiceProvider extends ServiceProvider
         }
     }
 
-    protected function centralDomains(): array
+    protected function centralDomains()
     {
         return config('tenancy.central_domains');
     }

@@ -13,24 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('associados', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('nome_artistico');
+            $table->string('cpf');
             $table->date('data_nascimento');
-            $table->string('cnpf_cnpj');
             $table->string('rua')->nullable();
             $table->string('numero')->nullable();
             $table->string('cep')->nullable();
             $table->string('cidade')->nullable();
-            
             $table->string('uf')->nullable();
             $table->string('pais')->nullable();
             $table->string('email')->nullable();
-            $table->string('email2')->nullable();
-            $table->string('telefone1');
-            $table->string('telefone2')->nullable();
-            $table->string('data_cobranca');
+            $table->string('telefone');
             $table->string('tenant_id');
             $table->timestamps();
             $table->softDeletes();
@@ -44,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produtos');
+        Schema::dropIfExists('clientes');
     }
 };
